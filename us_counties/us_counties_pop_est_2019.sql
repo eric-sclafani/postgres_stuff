@@ -17,13 +17,13 @@ LIMIT 5;
 
 -- export the data to a .txt file with a pipe (|) delimiter
 COPY us_counties_pop_est_2019
-TO '/Users/eric/Documents/postgres_stuff/us_counties_export.txt'
+TO '/Users/eric/Documents/postgres_stuff/us_counties/us_counties_export.txt'
 WITH (FORMAT CSV, HEADER, DELIMITER '|');
 
 
 -- export only select columns to a file
 COPY us_counties_pop_est_2019 (county_name, internal_point_lat, internal_point_lon)
-TO '/Users/eric/Documents/postgres_stuff/us_counties_latlon_export.txt'
+TO '/Users/eric/Documents/postgres_stuff/us_counties/us_counties_latlon_export.txt'
 WITH (FORMAT CSV, HEADER, DELIMITER '|');
 
 
@@ -33,7 +33,7 @@ COPY(
 	FROM us_counties_pop_est_2019
 	WHERE county_name ILIKE '%mill%'
 	)
-TO '/Users/eric/Documents/postgres_stuff/us_counties_mil_export.txt'
+TO '/Users/eric/Documents/postgres_stuff/us_counties/us_counties_mil_export.txt'
 WITH (FORMAT CSV, HEADER);
 
 COPY (
@@ -42,7 +42,7 @@ COPY (
 	ORDER BY births_2019 DESC
 	LIMIT 20
 )
-TO '/Users/eric/Documents/postgres_stuff/us_counties_births_export.txt'
+TO '/Users/eric/Documents/postgres_stuff/us_counties/us_counties_births_export.txt'
 WITH (FORMAT CSV, HEADER, DELIMITER '|');
 
 -- subtract the deaths column from births to get the difference between the two, save it as natural_increase

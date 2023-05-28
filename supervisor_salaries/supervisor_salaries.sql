@@ -10,14 +10,14 @@ CREATE TABLE IF NOT EXISTS supervisor_salaries (
 
 -- specifies which columns in the table are present in the CSV
 COPY supervisor_salaries (town, supervisor, salary)
-FROM '/Users/eric/Documents/postgres_stuff/chapter_5/supervisor_salaries.csv'
+FROM '/Users/eric/Documents/postgres_stuff/supervisor_salaries/supervisor_salaries.csv'
 WITH (FORMAT CSV, HEADER);
 
 DELETE FROM supervisor_salaries;
 
 -- imports data from the csv based on a condition
 COPY supervisor_salaries (town, supervisor, salary)
-FROM '/Users/eric/Documents/postgres_stuff/chapter_5/supervisor_salaries.csv'
+FROM '/Users/eric/Documents/postgres_stuff/supervisor_salaries/supervisor_salaries.csv'
 WITH (FORMAT CSV, HEADER)
 WHERE town = 'New Brillig';
 
@@ -30,7 +30,7 @@ CREATE TEMPORARY TABLE supervisor_salaries_temp
 
 -- import the csv data into the temporary table
 COPY supervisor_salaries_temp (town, supervisor, salary)
-FROM '/Users/eric/Documents/postgres_stuff/chapter_5/supervisor_salaries.csv'
+FROM '/Users/eric/Documents/postgres_stuff/supervisor_salaries/supervisor_salaries.csv'
 WITH (FORMAT CSV, HEADER);
 
 -- Instead of specifying values when inserting into the supervisor_salaries table,
